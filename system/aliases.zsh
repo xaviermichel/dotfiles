@@ -7,5 +7,5 @@ alias lh='ls -lh'
 
 
 # Run it as root ! (NOPASSWD)
-alias ssamba='sudo $ZSH/bin/simple-samba.sh'
+#alias ssamba='sudo $ZSH/bin/simple-samba.sh'
 
