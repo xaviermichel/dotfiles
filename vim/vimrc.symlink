@@ -11,13 +11,57 @@ set shiftwidth=4        " Largeur de l'indentation
 "set fdm=indent          " Repli selon l'indentation
 "set expandtab           " Utilise des espaces plutôue le caractè tabulation
 
+" allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+
+" Only do this part when compiled with support for autocommands.
+if has("autocmd")
+	" Enable file type detection.
+	" Use the default filetype settings, so that mail gets 'tw' set to 72,
+	" 'cindent' is on in C files, etc.
+	" Also load indent files, to automatically do language-dependent indenting.
+	filetype plugin indent on
+
+	" Set File type to 'text' for files ending in .txt
+	autocmd BufNewFile,BufRead *.txt setfiletype text
+
+	" Enable soft-wrapping for text files
+	autocmd FileType text,markdown,html,xhtml,eruby setlocal wrap linebreak nolist
+
+	" Put these in an autocmd group, so that we can delete them easily.
+	augroup vimrcEx
+		au!
+
+		" For all text files set 'textwidth' to 78 characters.
+		" autocmd FileType text setlocal textwidth=78
+
+		" When editing a file, always jump to the last known cursor position.
+		" Don't do it when the position is invalid or when inside an event handler
+		" (happens when dropping a file on gvim).
+		autocmd BufReadPost *
+					\ if line("'\"") > 0 && line("'\"") <= line("$") |
+					\   exe "normal g`\"" |
+					\ endif
+
+		" Automatically load .vimrc source when saved
+		autocmd BufWritePost .vimrc source $MYVIMRC
+
+	augroup END
+
+else
+
+	set autoindent                " always set autoindenting on
+
+endif " has("autocmd")
+
+
 set background=dark
 
 syntax on               " Coloration
 set number              " Numétation
 "set background=dark     " Coloration pour les fonds sombres
 "set mouse=a             " Utiliser la souris... c'est us pratique ^^
-filetype indent on      " Indentation automatique
+"filetype indent on      " Indentation automatique
 
 " Supprime les espaces en fin de ligne avant de sauver
 autocmd BufWrite * silent! %s/[\r \t]\+$//
@@ -29,16 +73,16 @@ autocmd BufWrite * silent! %s/[\r \t]\+$//
 "noremap m <C-l>
 
 if has("spell")
-    " Les dictionnaires seront telecharges automatiquement si le repertoire ~/.vim/spell existe
-    if !filewritable($HOME."/.vim/spell")
-        call mkdir($HOME."/.vim/spell", "p")
-    endif
-    set spellsuggest=10 " La commande z= affiche des suggestions, je n'en veux que 10 pour ne pas surcharger l'éan
-    " On regle les touches d'activation manuelle de la correction orthographique
-    noremap ,sf :setlocal spell spelllang=fr <CR>
-    noremap ,se :setlocal spell spelllang=en <CR>
-    noremap ,sn :setlocal nospell <CR>
-    " On active automatiquement le mode spell pour les fichiers texte et LaTeX
-    autocmd BufEnter *.txt,*.tex setlocal spell
-    autocmd BufEnter *.txt,*.tex setlocal spelllang=fr
+	" Les dictionnaires seront telecharges automatiquement si le repertoire ~/.vim/spell existe
+	if !filewritable($HOME."/.vim/spell")
+		call mkdir($HOME."/.vim/spell", "p")
+	endif
+	set spellsuggest=10 " La commande z= affiche des suggestions, je n'en veux que 10 pour ne pas surcharger l'éan
+	" On regle les touches d'activation manuelle de la correction orthographique
+	noremap ,sf :setlocal spell spelllang=fr <CR>
+	noremap ,se :setlocal spell spelllang=en <CR>
+	noremap ,sn :setlocal nospell <CR>
+	" On active automatiquement le mode spell pour les fichiers texte et LaTeX
+	autocmd BufEnter *.txt,*.tex setlocal spell
+	autocmd BufEnter *.txt,*.tex setlocal spelllang=fr
 endif
