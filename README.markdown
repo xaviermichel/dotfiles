@@ -19,9 +19,17 @@ subject](http://zachholman.com/2010/08/dotfiles-are-meant-to-be-forked/).
 Run this:
 
 ```sh
-git clone https://github.com/holman/dotfiles.git ~/.dotfiles
+# install packages
+sudo apt-get install -y git vim zsh
+# install zsh
+wget --no-check-certificate https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O - | sh
+# get dotfiles
+git clone https://github.com/xaviermichel/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 script/bootstrap
+# add zsh theme
+wget --no-check-certificate https://gist.github.com/xaviermichel/5635753/raw/6986f626dba59fc32ffa9eef1410257e03e4ff5f/simple.zsh-theme --output-document ~/.oh-my-zsh/themes/simple.zsh-theme
+sed -i -e 's/ZSH_THEME=".*"/ZSH_THEME="simple"/g' ~/.zshrc
 ```
 
 This will symlink the appropriate files in `.dotfiles` to your home directory.
