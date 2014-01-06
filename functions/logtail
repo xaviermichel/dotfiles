@@ -1,0 +1,3 @@
+logtail() {
+	tail -f $1 | ccze -A;
+}
