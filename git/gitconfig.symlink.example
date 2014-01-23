@@ -3,18 +3,18 @@
 
 [hub]
         protocol = https
-		
+
 [user]
         name = AUTHORNAME
         email = AUTHOREMAIL
-		
+
 [credential]
         helper = GIT_CREDENTIAL_HELPER
-		
+
 # HTTP Proxy configuration for external repositories
 #[http]
 #		proxy = http://proxy.fr:3128
-		
+
 [alias]
         co = checkout
         #promote = !$ZSH/bin/git-promote
@@ -33,7 +33,7 @@
 		gll = log     --color=always --all --graph --topo-order --pretty='format: %Cgreen%h%Creset %s%Cred%d%Creset%n'
 		lol = log --graph --decorate --pretty=oneline --abbrev-commit
 		lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
-		lg = log --graph --pretty=format:'%C(red)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset' --abbrev-commit --date=relative --color --branches --tags –-decorate
+		lg = log --graph --pretty=format:'%C(red)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset' --abbrev-commit --date=relative --color --branches --tags --decorate
 
 		# Dealing with remote repositories
 		currentbranch = !git branch --contains HEAD | tr -s ' ' | cut -d ' ' -f2
@@ -52,14 +52,14 @@
 		head = rev-list --max-count=1 HEAD
 		pack = "!git archive HEAD --format=tar | gzip > ./`git h`.tar.gz"
 		ignore= "!([ ! -e .gitignore ] && touch .gitignore) | echo $1 >>.gitignore"
-		
+
 [color]
         diff = auto
         status = auto
         branch = auto
 		interactive = auto
         ui = true
-		
+
 [core]
         excludesfile = ~/.gitignore
         editor = vim
@@ -68,16 +68,16 @@
 		# and https://help.github.com/articles/dealing-with-line-endings
 		autocrlf = false
 		safecrlf = false
-	
+
 [apply]
         whitespace = nowarn
 
 [difftool]
         prompt = false
-		
+
 [help]
         autocorrect = 1
-		
+
 [push]
         # See `git help config` (search for push.default)
         # for more information on different options of the below setting.
