@@ -5,6 +5,8 @@ alias la='ls -A --color'
 alias s='cd ..'
 alias lh='ls -lh'
 
+alias py='python'
+
 # Run it as root ! (NOPASSWD)
 alias ssamba='sudo ~/bin/simple-samba.sh'
 
