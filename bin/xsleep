@@ -1,0 +1,21 @@
+#!/bin/bash
+
+#
+# Sleep with progress bar
+#
+
+if [ -z "$1" ]; then
+	echo "Usage : $0 time_to_sleep_in_seconds"
+	exit 1
+fi
+
+timeToSleep=$1
+
+for current in $(eval echo {0..$timeToSleep})
+do
+	sleep 1
+	currentProgress=$(($current*100/$timeToSleep))
+	awk "BEGIN { printf \"\r\" ; printf(\"%02d\", $currentProgress); printf \"% [\" ; while (i++<$currentProgress) printf \"=\"; while (j++<(100-$currentProgress)) printf \".\"; printf \"]\"}"
+done
+echo
+
