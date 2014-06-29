@@ -1,6 +1,7 @@
 #!/bin/bash
 
 #
+# Xavier
 # Sleep with progress bar
 #
 
@@ -9,13 +10,42 @@ if [ -z "$1" ]; then
 	exit 1
 fi
 
+function refreshBar() {
+	currentProgress=$1
+	awk "BEGIN { printf \"\r\" ; printf(\"%02d\", $currentProgress); printf \"% [\" ; while (i++<$currentProgress) printf \"=\"; while (j++<(100-$currentProgress)) printf \".\"; printf \"]\"}"
+}
+
+# used to sleep less than 100 seconds (refresh each seconds)
+function everySecondStrategy() {
+	timeToSleep=$1
+	for current in $(eval echo {0..$timeToSleep})
+	do
+		currentProgress=$(($current*100/$timeToSleep))
+		refreshBar ${currentProgress}
+		sleep 1
+	done
+	echo
+}
+
+# used to sleep more than 100 seconds, compute time to sleep between refresh
+function fixedSleepTimeStrategy() {
+	timeToSleep=$1
+	timeToSleepBetweenSteps=$(awk "BEGIN {printf \"%.2f\",${timeToSleep}/100.}")
+	for currentProgress in {0..100}
+	do
+		refreshBar ${currentProgress}
+		sleep ${timeToSleepBetweenSteps}
+	done
+	echo
+}
+
+# main
+
 timeToSleep=$1
 
-for current in $(eval echo {0..$timeToSleep})
-do
-	sleep 1
-	currentProgress=$(($current*100/$timeToSleep))
-	awk "BEGIN { printf \"\r\" ; printf(\"%02d\", $currentProgress); printf \"% [\" ; while (i++<$currentProgress) printf \"=\"; while (j++<(100-$currentProgress)) printf \".\"; printf \"]\"}"
-done
-echo
+if [ $timeToSleep -lt 100 ]; then
+	everySecondStrategy ${timeToSleep}
+else
+	fixedSleepTimeStrategy ${timeToSleep}
+fi
 
