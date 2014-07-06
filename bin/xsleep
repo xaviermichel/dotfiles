@@ -12,7 +12,7 @@ fi
 
 function refreshBar() {
 	currentProgress=$1
-	awk "BEGIN { printf \"\r\" ; printf(\"%02d\", $currentProgress); printf \"% [\" ; while (i++<$currentProgress) printf \"=\"; while (j++<(100-$currentProgress)) printf \".\"; printf \"]\"}"
+	awk "BEGIN { printf \"\r\" ; printf(\"%02d\", $currentProgress); printf \"%% [\" ; while (i++<$currentProgress) printf \"=\"; while (j++<(100-$currentProgress)) printf \".\"; printf \"]\"}"
 }
 
 # used to sleep less than 100 seconds (refresh each seconds)
