@@ -95,11 +95,11 @@ function xlog_fill_log_file() {
 function xlog_usage() {
 	echo "Usage"
 	echo "-----"
-	echo ". xlog                     # load xlog lib (use in another script)"
-	echo "xlog demo                  # fill a demo log file and print it"
-	echo "xlog usage                 # show help"
-	echo "cat log.log | xlog read    # process coloration on stdin"
-	echo "xlog log.log               # tailf the given file"
+	echo ". xlog.sh                     # load xlog lib (use in another script)"
+	echo "xlog.sh demo                  # fill a demo log file and print it"
+	echo "xlog.sh usage                 # show help"
+	echo "cat log.log | xlog.sh read    # process coloration on stdin"
+	echo "xlog.sh log.log               # tailf the given file"
 }
 
 #
@@ -116,15 +116,15 @@ elif [ "$1" == "usage" ]; then
 	xlog_usage
 	exit
 elif [ "$1" == "read" ]; then
-        echo -e "   \033[0;30;47m-> Reading STDIN\033[0m"
+    echo -e "   \033[0;30;47m-> Reading STDIN\033[0m"
 	while read line ; do
-                xlog_color_line $line
-        done
+		xlog_color_line $line
+	done
 elif [ ! -z "$1" ]; then
-        echo -e "   \033[0;30;47m-> Reading given file\033[0m"
+	echo -e "   \033[0;30;47m-> Reading given file\033[0m"
 	tail -f "$1" | while read line ; do
-                xlog_color_line $line
-        done
+		xlog_color_line $line
+	done
 else
 	echo "xlog lib loaded"
 fi
