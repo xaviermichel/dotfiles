@@ -26,7 +26,7 @@ log_data_map[DEBUG_color]='0;37;40'
 
 log_data_map[INFO_pound]=15
 log_data_map[INFO_message]='INFO'
-log_data_map[INFO_color]='0;34;40'
+log_data_map[INFO_color]='0;36;40'
 
 log_data_map[WARN_pound]=20
 log_data_map[WARN_message]='WARN'
