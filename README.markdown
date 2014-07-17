@@ -43,6 +43,32 @@ defaults, and so on. Tweak this script, and occasionally run `dot` from
 time to time to keep your environment fresh and up-to-date. You can find
 this script in `bin/`.
 
+## install for vagrant sh provisioning
+
+It's also working if you wana define X_USER default shell
+
+```sh
+###
+### Custom X_USER shell, see https://github.com/xaviermichel/dotfiles
+###
+XUSER=vagrant
+# install packages
+apt-get install -y git vim zsh
+# install zsh
+su - ${X_USER} --command="wget --no-check-certificate https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O - | sh"
+# get dotfiles
+su - ${X_USER} --command="git clone https://github.com/xaviermichel/dotfiles.git ~/.dotfiles"
+su - ${X_USER} --command="cd ~/.dotfiles ; sed -i -e 's/overwrite_all=false/overwrite_all=true/g' script/bootstrap ; sed -i -e 's/^setup_gitconfig$/#setup_gitconfig/g' script/bootstrap ; script/bootstrap" 
+# add zsh theme
+su - ${X_USER} --command="wget --no-check-certificate https://gist.github.com/xaviermichel/5635753/raw/6986f626dba59fc32ffa9eef1410257e03e4ff5f/simple.zsh-theme --output-document ~/.oh-my-zsh/themes/simple.zsh-theme"
+su - ${X_USER} --command="sed -i -e 's/ZSH_THEME=".*"/ZSH_THEME=\"simple\"/g' /home/${X_USER}/.zshrc"
+# chsh 
+chsh -s $(which zsh) ${X_USER}
+###
+###
+###
+```
+
 ## topical
 
 Everything's built around topic areas. If you're adding a new area to your
