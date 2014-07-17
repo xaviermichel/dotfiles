@@ -51,7 +51,7 @@ It's also working if you wana define X_USER default shell
 ###
 ### Custom X_USER shell, see https://github.com/xaviermichel/dotfiles
 ###
-XUSER=vagrant
+X_USER=vagrant
 # install packages
 apt-get install -y git vim zsh
 # install zsh
