@@ -9,4 +9,5 @@ alias py='python'
 
 # Run it as root ! (NOPASSWD)
 alias ssamba='sudo ~/bin/simple-samba.sh'
+alias xupdate='sudo /home/xavier/bin/update_and_upgrade.sh'
 
