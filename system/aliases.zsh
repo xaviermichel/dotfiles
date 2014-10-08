@@ -11,3 +11,7 @@ alias py='python'
 alias ssamba='sudo ~/bin/simple-samba.sh'
 alias xupdate='sudo /home/xavier/bin/update_and_upgrade.sh'
 
+# http://unix.stackexchange.com/questions/2577/how-can-i-move-files-and-view-the-progress-e-g-with-a-progress-bar
+alias bcp='rsync -aP'
+alias bmv='rsync -aP --remove-source-files'
+
