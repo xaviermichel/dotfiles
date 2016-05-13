@@ -15,3 +15,5 @@ alias xupdate='sudo /home/xavier/bin/update_and_upgrade.sh'
 alias bcp='rsync -aP'
 alias bmv='rsync -aP --remove-source-files'
 
+alias meteo='curl http://wttr.in/lyon'
+
