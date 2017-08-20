@@ -17,7 +17,9 @@ alias bmv='rsync -aP --remove-source-files'
 
 alias meteo='curl http://wttr.in/lyon'
 
-# docker (from https://github.com/tcnksm/docker-alias/blob/master/zshrc)
+# ------------------------------------
+# Docker alias and function from https://github.com/tcnksm/docker-alias
+# ------------------------------------
 
 # Get latest container ID
 alias dl="docker ps -l -q"
@@ -55,7 +57,7 @@ alias drmf='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
 # Remove all images
 dri() { docker rmi $(docker images -q); }
 
-# Dockerfile build, e.g., $dbu tcnksm/test 
+# Dockerfile build, e.g., $dbu tcnksm/test
 dbu() { docker build -t=$1 .; }
 
 # Show all alias related docker
