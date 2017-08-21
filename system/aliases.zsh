@@ -17,7 +17,6 @@ alias bmv='rsync -aP --remove-source-files'
 
 alias meteo='curl http://wttr.in/lyon'
 
-
 # ------------------------------------
 # Docker alias and function from https://github.com/tcnksm/docker-alias
 # ------------------------------------
