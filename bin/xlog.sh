@@ -6,8 +6,16 @@
 # configuration
 #
 
+
 log_level='DEBUG'
+if [ ! -z ${xlog_level+x} ] ; then
+	log_level=${xlog_level}
+fi
+
 log_output=xlog.log
+if [ ! -z ${xlog_output+x} ]; then
+	log_output=${xlog_output}
+fi
 
 
 log_date_format='+%Y-%m-%d_%H:%M:%S.%N'

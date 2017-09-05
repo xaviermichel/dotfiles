@@ -16,6 +16,7 @@ alias bcp='rsync -aP'
 alias bmv='rsync -aP --remove-source-files'
 
 alias meteo='curl http://wttr.in/lyon'
+alias pluie="curl -s 'http://www.meteofrance.com/mf3-rpc-portlet/rest/pluie/692660' | jq -r '.niveauPluieText | join(\"\n\")'"
 
 # ------------------------------------
 # Docker alias and function from https://github.com/tcnksm/docker-alias
