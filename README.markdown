@@ -28,7 +28,7 @@ git clone https://github.com/xaviermichel/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 script/bootstrap
 # add zsh theme
-wget --no-check-certificate https://gist.github.com/xaviermichel/5635753/raw/6986f626dba59fc32ffa9eef1410257e03e4ff5f/simple.zsh-theme --output-document ~/.oh-my-zsh/themes/simple.zsh-theme
+wget --no-check-certificate https://gist.githubusercontent.com/xaviermichel/5635753/raw/4dfe840aa7f57e6828242c860ecc5b614124bb23/simple.zsh-theme --output-document ~/.oh-my-zsh/themes/simple.zsh-theme
 sed -i -e 's/ZSH_THEME=".*"/ZSH_THEME="simple"/g' ~/.zshrc
 ```
 
