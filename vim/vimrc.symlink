@@ -141,6 +141,8 @@ Plug 'junegunn/vader.vim',  { 'on': 'Vader', 'for': 'vader' }
 
 Plug 'pearofducks/ansible-vim'
 
+Plug 'airblade/vim-gitgutter'
+
 " Initialize plugin system
 call plug#end()
 

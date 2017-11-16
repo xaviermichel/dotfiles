@@ -6,6 +6,7 @@ alias s='cd ..'
 alias lh='ls -lh'
 
 alias py='python'
+alias publicIP='curl ipinfo.io/ip'
 
 # Run it as root ! (NOPASSWD)
 alias ssamba='sudo ~/bin/simple-samba.sh'
