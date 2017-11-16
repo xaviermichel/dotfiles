@@ -139,9 +139,11 @@ Plug 'kovisoft/paredit', { 'for': ['clojure', 'scheme'] }
 " On-demand loading on both conditions
 Plug 'junegunn/vader.vim',  { 'on': 'Vader', 'for': 'vader' }
 
+" ansible tool
 Plug 'pearofducks/ansible-vim'
 
-Plug 'airblade/vim-gitgutter'
+" status bar
+Plug 'bling/vim-airline'
 
 " Initialize plugin system
 call plug#end()
