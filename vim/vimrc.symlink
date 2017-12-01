@@ -1,150 +1,193 @@
-set nocompatible        " Use Vim defaults (much better!
-set vb t_vb=            " pas de beep
-set showcmd             " Show (partial) command in status line.
-set showmatch           " Show matching brackets.
-set ignorecase          " Do case insensitive matching
-set incsearch           " Incremental search
+set notimeout
+set nocompatible
+set laststatus=2
+set ruler
+syntax on
 
-set tabstop=4
-set softtabstop=4       " Largeur d'une tabulation
-set shiftwidth=4        " Largeur de l'indentation
-"set fdm=indent          " Repli selon l'indentation
-"set expandtab           " Utilise des espaces plutôue le caractè tabulation
+" Vundle
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
 
-" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
+" Bundles
+" Theme
+Bundle 'altercation/vim-colors-solarized'
+" Theme
+Bundle 'vim-scripts/molokai'
+" Git wrapper
+Bundle 'tpope/vim-fugitive'
+" File tree
+Bundle 'scrooloose/nerdtree'
+" Full path finder
+Bundle 'kien/ctrlp.vim'
+" Tab completion
+Bundle 'ervandew/supertab'
+" Code completion
+"Bundle 'Valloric/YouCompleteMe'
+" Zoom <c-w>o
+Bundle 'vim-scripts/ZoomWin'
+" Statusline
+Bundle 'bling/vim-airline'
+" Char jumping
+"Bundle 'edsono/vim-matchit'
+" Buffer Navigation
+Bundle 'jeetsukumaran/vim-buffergator'
+" Javascript support
+Bundle 'jelera/vim-javascript-syntax'
+Bundle 'pangloss/vim-javascript'
+"Bundle 'marijnh/tern_for_vim'
+" Indenting
+Bundle 'nathanaelkane/vim-indent-guides'
+" Markdown support
+Bundle 'tpope/vim-markdown'
+" Coffee script support
+Bundle 'kchmck/vim-coffee-script'
+" GIT support
+Bundle 'tpope/vim-git'
+" Ruby support
+Bundle 'vim-ruby/vim-ruby'
+" Syntax checking
+Bundle 'scrooloose/syntastic'
+" Command line
+Bundle 'sjl/clam.vim'
+" Less support
+Bundle 'groenewege/vim-less'
+" Handlebars support
+Bundle 'nono/vim-handlebars'
+" NGINX support
+Bundle 'vim-scripts/nginx.vim'
+" Text auto align
+Bundle 'godlygeek/tabular'
+" Snippets
+Bundle 'garbas/vim-snipmate'
+Bundle 'honza/vim-snippets'
+" Utility
+Bundle 'tomtom/tlib_vim'
+" Utility
+Bundle 'MarcWeber/vim-addon-mw-utils'
+" Dart
+Bundle 'dart-lang/dart-vim-plugin'
+" Automate closing qoat, brackets, etc.
+Bundle 'Raimondi/delimitMate'
+" Go
+Bundle 'fatih/vim-go'
+" Yaml
+Bundle 'stephpy/vim-yaml'
+" Docker
+Bundle 'ekalinin/Dockerfile.vim'
+" Asciidoc
+Bundle 'dagwieers/asciidoc-vim'
+" JSX
+Bundle 'mxw/vim-jsx'
 
-" Only do this part when compiled with support for autocommands.
-if has("autocmd")
-	" Enable file type detection.
-	" Use the default filetype settings, so that mail gets 'tw' set to 72,
-	" 'cindent' is on in C files, etc.
-	" Also load indent files, to automatically do language-dependent indenting.
-	filetype plugin indent on
+" load the plugin and indent settings for the detected filetype
+filetype plugin indent on
 
-	" Set File type to 'text' for files ending in .txt
-	autocmd BufNewFile,BufRead *.txt setfiletype text
+" Numbers
+set number
 
-	" Enable soft-wrapping for text files
-	autocmd FileType text,markdown,html,xhtml,eruby setlocal wrap linebreak nolist
+" Set encoding
+set encoding=utf-8
 
-	" Put these in an autocmd group, so that we can delete them easily.
-	augroup vimrcEx
-		au!
+" Backup and swap files
+set backupdir=~/.vim/backup//
+set directory=~/.vim/temp//
 
-		" For all text files set 'textwidth' to 78 characters.
-		" autocmd FileType text setlocal textwidth=78
+" Searching
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
 
-		" When editing a file, always jump to the last known cursor position.
-		" Don't do it when the position is invalid or when inside an event handler
-		" (happens when dropping a file on gvim).
-		autocmd BufReadPost *
-					\ if line("'\"") > 0 && line("'\"") <= line("$") |
-					\   exe "normal g`\"" |
-					\ endif
+" Tab completion
+set wildmode=list:longest,list:full
+set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*
 
-		" Automatically load .vimrc source when saved
-		autocmd BufWritePost .vimrc source $MYVIMRC
-
-	augroup END
-
-else
-
-	set autoindent                " always set autoindenting on
-
-endif " has("autocmd")
-
-
+" Default colorscheme to solarized
 set background=dark
+"let g:solarized_termcolors=256
+colorscheme solarized
+set cursorline
 
-syntax on               " Coloration
-set number              " Numétation
-"set background=dark     " Coloration pour les fonds sombres
-"set mouse=a             " Utiliser la souris... c'est us pratique ^^
-"filetype indent on      " Indentation automatique
+" Whitespace stuff
+set nowrap
+set expandtab
+set backspace=indent,eol,start
+set list
+set listchars=tab:»·,trail:·,nbsp:_,extends:>,precedes:<
 
-" Supprime les espaces en fin de ligne avant de sauver
-autocmd BufWrite * silent! %s/[\r \t]\+$//
+" Softtabs, 2 spaces
+set tabstop=2
+set shiftwidth=2
+set shiftround
+set expandtab
 
-" changement des touches de déacement
-"noremap j <C-h>
-"noremap k <C-j>
-"noremap l <C-k>
-"noremap m <C-l>
+" Move easily between windows
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+map <F2> :NERDTreeToggle <CR>
 
-if has("spell")
-	" Les dictionnaires seront telecharges automatiquement si le repertoire ~/.vim/spell existe
-	if !filewritable($HOME."/.vim/spell")
-		call mkdir($HOME."/.vim/spell", "p")
-	endif
-	set spellsuggest=10 " La commande z= affiche des suggestions, je n'en veux que 10 pour ne pas surcharger l'éan
-	" On regle les touches d'activation manuelle de la correction orthographique
-	noremap ,sf :setlocal spell spelllang=fr <CR>
-	noremap ,se :setlocal spell spelllang=en <CR>
-	noremap ,sn :setlocal nospell <CR>
-	" On active automatiquement le mode spell pour les fichiers texte et LaTeX
-	autocmd BufEnter *.txt,*.tex setlocal spell
-	autocmd BufEnter *.txt,*.tex setlocal spelllang=fr
+" Avoid 'escaping' from home row
+imap jj <Esc>
+"imap <C-Space> <C-X><C-O>
+
+" CtrlP
+let g:ctrlp_working_path_mode = 0 " don’t manage working directory
+let g:ctrlp_switch_buffer = 'et' "don't jump if the buffer is not in the current tab
+
+" Syntastic on opening file
+let g:syntastic_check_on_open=1
+
+" JS Syntastic checkers
+let g:syntastic_javascript_checkers = ['eslint']
+
+" Disable Go install
+let g:go_disable_autoinstall = 1
+
+" Mouse
+"set mouse+=a
+if &term =~ '^screen'
+    " tmux knows the extended mouse mode
+    set ttymouse=xterm2
+endif
+if has("mouse_sgr")
+    set ttymouse=sgr
+else
+    set ttymouse=xterm2
+end
+
+if has('gui_running')
+  set guifont=Monospace\ 12
 endif
 
-" Specify a directory for plugins
-" - For Neovim: ~/.local/share/nvim/plugged
-" - Avoid using standard Vim directory names like 'plugin'
-call plug#begin('~/.vim/plugged')
+" tab navigation like firefox
+nnoremap <silent> <A-Left>  :tabprevious<CR>
+nnoremap <silent> <A-Right> :tabnext<CR>
+nnoremap <silent> <C-t>     :tabnew<CR>
+inoremap <silent> <A-Left>  <Esc>:tabprevious<CR>
+inoremap <silent> <A-Right> <Esc>:tabnext<CR>
+inoremap <silent> <C-t>     <Esc>:tabnew<CR>
 
-" Make sure you use single quotes
+" Enable spellchecking for Markdown
+autocmd FileType markdown setlocal spell
+autocmd FileType rst setlocal spell
+" Automatically wrap at 80 characters for Markdown and reStructuredText
+"autocmd BufRead,BufNewFile *.md setlocal textwidth=80
+"autocmd BufRead,BufNewFile *.rst setlocal textwidth=80
 
-" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
-Plug 'junegunn/vim-easy-align'
+" Make it obvious where 80 characters is
+set colorcolumn=+1
 
-" Any valid git URL is allowed
-Plug 'https://github.com/junegunn/vim-github-dashboard.git'
+" Autocomplete with dictionary words when spell check is on
+set complete+=kspell
 
-" Multiple Plug commands can be written in a single line using | separators
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+" Always use vertical diffs
+set diffopt+=vertical
 
-" On-demand loading
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-let g:NERDTreeDirArrowExpandable = '>'
-let g:NERDTreeDirArrowCollapsible = 'v'
-Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-
-" Using a non-master branch
-Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
-
-" Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
-Plug 'fatih/vim-go', { 'tag': '*' }
-
-" Plugin options
-Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
-
-" Plugin outside ~/.vim/plugged with post-update hook
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-
-" Unmanaged plugin (manually installed and updated)
-Plug '~/my-prototype-plugin'
-
-" NERD tree will be loaded on the first invocation of NERDTreeToggle command
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-
-" Multiple commands
-Plug 'junegunn/vim-github-dashboard', { 'on': ['GHDashboard', 'GHActivity'] }
-
-" Loaded when clojure file is opened
-Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-
-" Multiple file types
-Plug 'kovisoft/paredit', { 'for': ['clojure', 'scheme'] }
-
-" On-demand loading on both conditions
-Plug 'junegunn/vader.vim',  { 'on': 'Vader', 'for': 'vader' }
-
-" ansible tool
-Plug 'pearofducks/ansible-vim'
-
-" status bar
-Plug 'bling/vim-airline'
-
-" Initialize plugin system
-call plug#end()
+" Local config
+if filereadable($HOME . "/.vimrc.local")
+    source ~/.vimrc.local
+endif
 
