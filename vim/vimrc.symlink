@@ -24,61 +24,31 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'ervandew/supertab'
 " Code completion
 "Bundle 'Valloric/YouCompleteMe'
-" Zoom <c-w>o
-Bundle 'vim-scripts/ZoomWin'
 " Statusline
 Bundle 'bling/vim-airline'
-" Char jumping
-"Bundle 'edsono/vim-matchit'
-" Buffer Navigation
-Bundle 'jeetsukumaran/vim-buffergator'
 " Javascript support
 Bundle 'jelera/vim-javascript-syntax'
 Bundle 'pangloss/vim-javascript'
-"Bundle 'marijnh/tern_for_vim'
 " Indenting
 Bundle 'nathanaelkane/vim-indent-guides'
 " Markdown support
 Bundle 'tpope/vim-markdown'
-" Coffee script support
-Bundle 'kchmck/vim-coffee-script'
 " GIT support
 Bundle 'tpope/vim-git'
-" Ruby support
-Bundle 'vim-ruby/vim-ruby'
 " Syntax checking
 Bundle 'scrooloose/syntastic'
 " Command line
 Bundle 'sjl/clam.vim'
-" Less support
-Bundle 'groenewege/vim-less'
-" Handlebars support
-Bundle 'nono/vim-handlebars'
 " NGINX support
 Bundle 'vim-scripts/nginx.vim'
 " Text auto align
 Bundle 'godlygeek/tabular'
-" Snippets
-Bundle 'garbas/vim-snipmate'
-Bundle 'honza/vim-snippets'
-" Utility
-Bundle 'tomtom/tlib_vim'
-" Utility
-Bundle 'MarcWeber/vim-addon-mw-utils'
-" Dart
-Bundle 'dart-lang/dart-vim-plugin'
 " Automate closing qoat, brackets, etc.
 Bundle 'Raimondi/delimitMate'
-" Go
-Bundle 'fatih/vim-go'
 " Yaml
 Bundle 'stephpy/vim-yaml'
 " Docker
 Bundle 'ekalinin/Dockerfile.vim'
-" Asciidoc
-Bundle 'dagwieers/asciidoc-vim'
-" JSX
-Bundle 'mxw/vim-jsx'
 
 " load the plugin and indent settings for the detected filetype
 filetype plugin indent on
@@ -90,8 +60,8 @@ set number
 set encoding=utf-8
 
 " Backup and swap files
-set backupdir=~/.vim/backup//
-set directory=~/.vim/temp//
+set backupdir=~/.vim/backup/
+set directory=~/.vim/temp/
 
 " Searching
 set hlsearch
@@ -113,8 +83,8 @@ set cursorline
 set nowrap
 set expandtab
 set backspace=indent,eol,start
-set list
-set listchars=tab:»·,trail:·,nbsp:_,extends:>,precedes:<
+"set list
+"set listchars=tab:»·,trail:·,nbsp:_,extends:>,precedes:<
 
 " Softtabs, 2 spaces
 set tabstop=2
