@@ -36,7 +36,7 @@ Bundle 'tpope/vim-markdown'
 " GIT support
 Bundle 'tpope/vim-git'
 " Syntax checking
-Bundle 'scrooloose/syntastic'
+"Bundle 'scrooloose/syntastic'
 " Command line
 Bundle 'sjl/clam.vim'
 " NGINX support
