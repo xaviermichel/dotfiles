@@ -1,0 +1,20 @@
+#!/bin/bash
+
+export xlog_level=INFO
+export xlog_output=
+. xlog ""
+
+login_pass="unknown:unknown"
+if [ $# -ge 1 ]; then
+	url=$(echo "${@: -1}")
+	protocol_domain=$(echo "${url}" | grep -Eo '(http.?://)?[^/]*' | head -1)
+	login_pass=$(get-chrome-password ${protocol_domain})
+fi
+
+if [ "${login_pass}" != "unknown:unknown" ]; then
+	xlog INFO "Using chrome password for user \"$(echo ${login_pass} | cut -d: -f1)\""
+	curl --user ${login_pass} $*
+else
+	curl $*
+fi
+
