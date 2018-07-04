@@ -44,11 +44,13 @@ Bundle 'vim-scripts/nginx.vim'
 " Text auto align
 Bundle 'godlygeek/tabular'
 " Automate closing qoat, brackets, etc.
-Bundle 'Raimondi/delimitMate'
+"Bundle 'Raimondi/delimitMate'
 " Yaml
-Bundle 'stephpy/vim-yaml'
+"Bundle 'stephpy/vim-yaml'
 " Docker
 Bundle 'ekalinin/Dockerfile.vim'
+" editorconfig
+Bundle 'editorconfig/editorconfig-vim'
 
 " load the plugin and indent settings for the detected filetype
 filetype plugin indent on
@@ -87,8 +89,8 @@ set backspace=indent,eol,start
 "set listchars=tab:»·,trail:·,nbsp:_,extends:>,precedes:<
 
 " Softtabs, 2 spaces
-set tabstop=2
-set shiftwidth=2
+set tabstop=4
+set shiftwidth=4
 set shiftround
 set expandtab
 
@@ -106,31 +108,6 @@ imap jj <Esc>
 " CtrlP
 let g:ctrlp_working_path_mode = 0 " don’t manage working directory
 let g:ctrlp_switch_buffer = 'et' "don't jump if the buffer is not in the current tab
-
-" Syntastic on opening file
-let g:syntastic_check_on_open=1
-
-" JS Syntastic checkers
-let g:syntastic_javascript_checkers = ['eslint']
-
-" Disable Go install
-let g:go_disable_autoinstall = 1
-
-" Mouse
-"set mouse+=a
-if &term =~ '^screen'
-    " tmux knows the extended mouse mode
-    set ttymouse=xterm2
-endif
-if has("mouse_sgr")
-    set ttymouse=sgr
-else
-    set ttymouse=xterm2
-end
-
-if has('gui_running')
-  set guifont=Monospace\ 12
-endif
 
 " tab navigation like firefox
 nnoremap <silent> <A-Left>  :tabprevious<CR>
