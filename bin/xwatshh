@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [ ${USER} != "root" ]; then
+  echo "Need to be launched as root"
+  exit 2
+fi
+
+tail -0f /var/log/auth.log | stdbuf -o0 grep -E "sshd.*session opened" | while read line 
+do
+  message=$line
+  from=$(sudo netstat -pant | grep -E "ESTABLISHED.*sshd")
+  echo -e "---\n$message\n$from"
+  sleep 2
+  notify-send "$message" "$from" --icon=security-low --expire-time=2000 --urgency=critical
+done
+
