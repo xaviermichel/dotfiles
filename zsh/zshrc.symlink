@@ -82,5 +82,7 @@ plugins=(git git-prompt docker docker-compose colored-man-pages command-not-foun
 ZSH=$HOME/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
+export PATH=${PATH}:~/bin:~/bin/node-linux/bin
+
 export no_proxy="localhost,127.0.0.1"
 
