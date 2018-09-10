@@ -78,7 +78,7 @@ set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*
 " Default colorscheme to solarized
 set background=dark
 "let g:solarized_termcolors=256
-colorscheme solarized
+"colorscheme solarized
 set cursorline
 
 " Whitespace stuff
