@@ -2,6 +2,7 @@ set notimeout
 set nocompatible
 set laststatus=2
 set ruler
+set wrap
 syntax on
 
 " Vundle
@@ -11,7 +12,7 @@ call vundle#rc()
 
 " Bundles
 " Theme
-Bundle 'altercation/vim-colors-solarized'
+"Bundle 'altercation/vim-colors-solarized'
 " Theme
 Bundle 'vim-scripts/molokai'
 " Git wrapper
@@ -36,7 +37,7 @@ Bundle 'tpope/vim-markdown'
 " GIT support
 Bundle 'tpope/vim-git'
 " Syntax checking
-Bundle 'scrooloose/syntastic'
+"Bundle 'scrooloose/syntastic'
 " Command line
 Bundle 'sjl/clam.vim'
 " NGINX support
@@ -76,7 +77,7 @@ set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*
 " Default colorscheme to solarized
 set background=dark
 "let g:solarized_termcolors=256
-colorscheme solarized
+"colorscheme solarized
 set cursorline
 
 " Whitespace stuff
