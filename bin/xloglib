@@ -68,6 +68,7 @@ function xlog() {
 		printf "%-30s %-6s $*\n" $(date ${log_date_format}) ${level} >> ${log_output}
 	fi
 }
+export -f xlog
 
 function xlog_color_line() {
 	line=$@
