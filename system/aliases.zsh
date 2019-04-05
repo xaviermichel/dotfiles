@@ -72,3 +72,10 @@ dbash() { docker exec -it $(docker ps -aqf "name=$1") bash; }
 # proxy
 dproxy() { docker run -d --net=host --privileged -e http_proxy=$http_proxy -e https_proxy=$https_proxy klabs/forgetproxy }
 
+# --------------
+# xclip
+# --------------
+alias setxclip="xclip -selection c"
+alias getxclip="xclip -selection c -o"
+
+

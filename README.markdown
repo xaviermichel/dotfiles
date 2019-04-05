@@ -28,8 +28,8 @@ git clone https://github.com/xaviermichel/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 script/bootstrap
 # add zsh theme
-wget --no-check-certificate https://gist.githubusercontent.com/xaviermichel/5635753/raw/4dfe840aa7f57e6828242c860ecc5b614124bb23/simple.zsh-theme --output-document ~/.oh-my-zsh/themes/simple.zsh-theme
-sed -i -e 's/ZSH_THEME=".*"/ZSH_THEME="simple"/g' ~/.zshrc
+wget --no-check-certificate https://gist.githubusercontent.com/xaviermichel/5635753/raw/4dfe840aa7f57e6828242c860ecc5b614124bb23/simple.zsh-theme --output-document ~/.oh-my-zsh/themes/xavier-simple.zsh-theme
+sed -i -e 's/ZSH_THEME=".*"/ZSH_THEME="xavier-simple"/g' ~/.zshrc
 ```
 
 This will symlink the appropriate files in `.dotfiles` to your home directory.
