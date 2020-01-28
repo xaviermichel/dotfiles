@@ -52,6 +52,8 @@ Bundle 'godlygeek/tabular'
 Bundle 'ekalinin/Dockerfile.vim'
 " editorconfig
 Bundle 'editorconfig/editorconfig-vim'
+" ansible
+Bundle 'pearofducks/ansible-vim'
 
 " load the plugin and indent settings for the detected filetype
 filetype plugin indent on
