@@ -35,8 +35,14 @@ dbash() { docker exec -it $(docker ps -aqf "name=$1") bash; }
 # proxy
 dproxy() { docker run -d --net=host --privileged -e http_proxy=$http_proxy -e https_proxy=$https_proxy klabs/forgetproxy }
 
-alias kc='kubectl config use-context'
 alias kn='kubectl -n'
+kc() {
+    if [ $# -eq "0" -o "$1" == "none" ]; then
+        kubectl config unset current-context
+    else
+        kubectl config use-context $1
+    fi
+}
 
 # --------------
 # xclip
