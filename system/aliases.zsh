@@ -37,6 +37,7 @@ dproxy() { docker run -d --net=host --privileged -e http_proxy=$http_proxy -e ht
 
 alias kc='kubectl config use-context'
 alias kn='kubectl -n'
+alias kc_none='kubectl config unset current-context'
 
 # --------------
 # xclip
