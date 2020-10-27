@@ -1,0 +1,15 @@
+#!/bin/bash
+
+CONF_LN=/etc/netplan/current.yaml
+OPTIONS="quit $(ls /etc/netplan/netplan-* | paste -s)"
+
+select opt in $OPTIONS; do
+  if [ "$opt" = "quit" ]; then
+    exit
+  else
+    sudo ln -sfv ${opt} ${CONF_LN}
+    sudo netplan apply
+    exit
+  fi
+done
+

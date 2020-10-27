@@ -43,6 +43,7 @@ kc() {
         kubectl config use-context $1
     fi
 }
+alias yaml='bat --language yaml'
 
 # --------------
 # xclip
