@@ -1,0 +1,19 @@
+#!/bin/bash
+
+proxy_port=5129
+if [ ! -z "$1" ]; then
+    proxy_port=$1
+fi
+
+chromium-browser --proxy-server="socks5://localhost:${proxy_port}" 2>&1 > /dev/null
+
+
+## openvpn
+# OVPN= cd ~/work/github/docker-openvpn-client-socks/ ; ./start ; cd -
+#chromium-browser --proxy-server="socks5://localhost:5129"
+
+## using ssh tunnel
+# ssh bastion -L 9128:127.0.0.1:9128
+# ssh myserver -D 9128
+#chromium-browser --proxy-server="socks5://localhost:9128"
+

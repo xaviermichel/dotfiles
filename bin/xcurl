@@ -2,7 +2,7 @@
 
 export xlog_level=INFO
 export xlog_output=
-. xlog ""
+. xloglib ""
 
 login_pass="unknown:unknown"
 if [ $# -ge 1 ]; then
