@@ -83,7 +83,16 @@ plugins=(git docker docker-compose colored-man-pages command-not-found zsh-synta
 ZSH=$HOME/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
-export PATH=${PATH}:~/bin:~/bin/node-linux/bin
+export PATH=${PATH}:~/bin
+
+if [ -d ~/.garden/bin ]; then
+    export PATH=${PATH}:~/.garden/bin
+    export user=xmichel
+fi
 
 export no_proxy="localhost,127.0.0.1"
 
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
