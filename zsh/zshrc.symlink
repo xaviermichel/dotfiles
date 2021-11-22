@@ -89,6 +89,9 @@ if [ -d ~/.garden/bin ]; then
     export PATH=${PATH}:~/.garden/bin
     export user=xmichel
 fi
+if [ -d ~/google-cloud-sdk/bin/ ]; then
+    export PATH=${PATH}:~/google-cloud-sdk/bin
+fi
 
 export no_proxy="localhost,127.0.0.1"
 
