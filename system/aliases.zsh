@@ -37,7 +37,7 @@ dproxy() { docker run -d --net=host --privileged -e http_proxy=$http_proxy -e ht
 
 alias kn='kubectl -n'
 kc() {
-    if [ $# -eq "0" -o "$1" == "none" ]; then
+    if [ $# -eq "0" -o "$1" = "none" ]; then
         kubectl config unset current-context
     else
         kubectl config use-context $1
