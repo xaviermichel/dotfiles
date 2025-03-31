@@ -51,4 +51,5 @@ alias yaml='bat --language yaml'
 alias setxclip="xclip -selection c"
 alias getxclip="xclip -selection c -o"
 
+alias perso_firefox_proxyfied='/Applications/Firefox.app/Contents/MacOS/firefox -no-remote -P "xavier perso" & ; ssh -nkN firefoxproxy'
 

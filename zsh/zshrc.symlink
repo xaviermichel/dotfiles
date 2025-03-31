@@ -84,11 +84,8 @@ ZSH=$HOME/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
 export PATH=${PATH}:~/bin
+export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
 
-if [ -d ~/.garden/bin ]; then
-    export PATH=${PATH}:~/.garden/bin
-    export user=xmichel
-fi
 if [ -d ~/google-cloud-sdk/bin/ ]; then
     export PATH=${PATH}:~/google-cloud-sdk/bin
 fi
@@ -101,3 +98,13 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 export SDKMAN_OFFLINE_MODE=false
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+
+if    [ -f $HOME/.dotfiles/bin/zcaler_init_config ]; then
+    source $HOME/.dotfiles/bin/zcaler_init_config
+fi
+if   [ -f $HOME/.dotfiles/zsh/extra_private_config ]; then
+   source $HOME/.dotfiles/zsh/extra_private_config
+fi
+
+

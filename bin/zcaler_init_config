@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Create directories
+if [ ! -d ~/.ca-certificates ]; then
+    mkdir -p ~/.ca-certificates
+fi
+security find-certificate -c "Zscaler Root CA" -p /Library/Keychains/System.keychain > ~/.ca-certificates/extra_root_certs.pem
+
+if [ ! -z ~/.ca-certificates/extra_root_certs.pem ]; then
+    # docker config
+    if [ ! -d $HOME/.docker/certs.d ]; then
+        mkdir -p $HOME/.docker/certs.d
+    fi
+    cp ~/.ca-certificates/extra_root_certs.pem $HOME/.docker/certs.d
+
+    # node config
+    export NODE_EXTRA_CA_CERTS=$HOME/.ca-certificates/extra_root_certs.pem
+fi
+
