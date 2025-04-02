@@ -1,19 +1,35 @@
 #!/bin/bash
 
+CERTS_DIR=~/.ca-certificates
+ZSCALER_CA_CERT_FILE_NAME=zscaler_root_ca
+ZSCALER_CA_CERT_PATH=${CERTS_DIR}/${ZSCALER_CA_CERT_FILE_NAME}.pem
+
 # Create directories
 if [ ! -d ~/.ca-certificates ]; then
-    mkdir -p ~/.ca-certificates
+    mkdir -p $CERTS_DIR
 fi
-security find-certificate -c "Zscaler Root CA" -p /Library/Keychains/System.keychain > ~/.ca-certificates/extra_root_certs.pem
+security find-certificate -c "Zscaler Root CA" -p /Library/Keychains/System.keychain > ${ZSCALER_CA_CERT_PATH}
 
-if [ ! -z ~/.ca-certificates/extra_root_certs.pem ]; then
+if [ ! -z ${ZSCALER_CA_CERT_PATH} ]; then # zscaler is present
     # docker config
     if [ ! -d $HOME/.docker/certs.d ]; then
         mkdir -p $HOME/.docker/certs.d
     fi
-    cp ~/.ca-certificates/extra_root_certs.pem $HOME/.docker/certs.d
+    cp ${ZSCALER_CA_CERT_PATH} $HOME/.docker/certs.d
 
     # node config
     export NODE_EXTRA_CA_CERTS=$HOME/.ca-certificates/extra_root_certs.pem
+
+    # java config
+    if [ ! -z "$JAVA_HOME" ]; then
+        cacertsLocation=$JAVA_HOME/lib/security/cacerts
+        if ! keytool -list -v -keypass changeit -storepass changeit -noprompt | grep -q "zscaler"; then
+            if [ ! -f "$cacertsLocation.original" ]; then
+                cp $cacertsLocation $cacertsLocation.original
+            fi
+            openssl x509 -in $ZSCALER_CA_CERT_PATH -inform pem -out ${CERTS_DIR}/${ZSCALER_CA_CERT_FILE_NAME}.der -outform der
+            keytool -importcert -file ${CERTS_DIR}/${ZSCALER_CA_CERT_FILE_NAME}.der -trustcacerts -alias zscaler -keypass changeit -storepass changeit -noprompt
+        fi
+    fi
 fi
 
