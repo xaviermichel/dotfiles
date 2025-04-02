@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CERTS_DIR=~/.ca-certificates
+CERTS_DIR=$HOME/.ca-certificates
 ZSCALER_CA_CERT_FILE_NAME=zscaler_root_ca
 ZSCALER_CA_CERT_PATH=${CERTS_DIR}/${ZSCALER_CA_CERT_FILE_NAME}.pem
 
@@ -18,7 +18,7 @@ if [ ! -z ${ZSCALER_CA_CERT_PATH} ]; then # zscaler is present
     cp ${ZSCALER_CA_CERT_PATH} $HOME/.docker/certs.d
 
     # node config
-    export NODE_EXTRA_CA_CERTS=$HOME/.ca-certificates/extra_root_certs.pem
+    export NODE_EXTRA_CA_CERTS=$ZSCALER_CA_CERT_PATH
 
     # java config
     if [ ! -z "$JAVA_HOME" ]; then
