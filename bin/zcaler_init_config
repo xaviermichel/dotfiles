@@ -22,13 +22,14 @@ if [ ! -z ${ZSCALER_CA_CERT_PATH} ]; then # zscaler is present
 
     # java config
     if [ ! -z "$JAVA_HOME" ]; then
-        cacertsLocation=$JAVA_HOME/lib/security/cacerts
-        if ! keytool -trustcacerts -list -v -keypass changeit -storepass changeit -noprompt | grep -q "zscalerrootca"; then
-            if [ ! -f "$cacertsLocation.original" ]; then
-                cp $cacertsLocation $cacertsLocation.original
+        keystore=$JAVA_HOME/lib/security/cacerts
+        if ! keytool -cacerts -list -v -keypass changeit -storepass changeit -noprompt | grep -q "zscalerrootca"; then
+            if [ ! -f "$keystore.original" ]; then
+                cp $keystore $keystore.original
             fi
-            openssl x509 -in $ZSCALER_CA_CERT_PATH -inform pem -out ${CERTS_DIR}/${ZSCALER_CA_CERT_FILE_NAME}.der -outform der
-            keytool -import -trustcacerts -file ${CERTS_DIR}/${ZSCALER_CA_CERT_FILE_NAME}.der -alias zscalerrootca -keypass changeit -storepass changeit -noprompt
+            keytool -cacerts -importcert -file $HOME/.ca-certificates/zscaler_root_ca.pem -alias zscalerrootca -storepass changeit -noprompt
+            # keytool -cacerts -list -v -keypass changeit -storepass changeit -noprompt
+            # keytool -delete -cacerts -noprompt -alias zscalerrootca -storepass changeit
         fi
     fi
 fi
