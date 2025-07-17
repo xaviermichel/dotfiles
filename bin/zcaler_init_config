@@ -15,7 +15,7 @@ if [ ! -z ${ZSCALER_CA_CERT_PATH} ]; then # zscaler is present
     if [ ! -d $HOME/.docker/certs.d ]; then
         mkdir -p $HOME/.docker/certs.d
     fi
-    cp ${ZSCALER_CA_CERT_PATH} $HOME/.docker/certs.d
+    cp ${ZSCALER_CA_CERT_PATH} $HOME/.docker/certs.d/
 
     # node config
     export NODE_EXTRA_CA_CERTS=$ZSCALER_CA_CERT_PATH
@@ -32,5 +32,11 @@ if [ ! -z ${ZSCALER_CA_CERT_PATH} ]; then # zscaler is present
             # keytool -delete -cacerts -noprompt -alias zscalerrootca -storepass changeit
         fi
     fi
+
+    # minikube
+    if [ ! -d $HOME/.minikube/certs ]; then
+        mkdir -p $HOME/.minikube/certs
+    fi
+    cp ${ZSCALER_CA_CERT_PATH} $HOME/.minikube/certs/
 fi
 

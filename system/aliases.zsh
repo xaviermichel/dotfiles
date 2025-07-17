@@ -40,7 +40,15 @@ kc() {
     if [ $# -eq "0" -o "$1" = "none" ]; then
         kubectl config unset current-context
     else
-        kubectl config use-context $1
+        ctx=$(kubectl config get-contexts | grep "$1" | awk '{print $1}')
+        ctxCount=$(echo $ctx | wc -l)
+        if [ $ctxCount -eq 0 ]; then
+            kubectl config use-context $1
+        elif [ $ctxCount -eq 1 ]; then
+            kubectl config use-context $ctx
+        else
+            echo "More than one context match, wont change current context"
+        fi
     fi
 }
 alias yaml='bat --language yaml'
